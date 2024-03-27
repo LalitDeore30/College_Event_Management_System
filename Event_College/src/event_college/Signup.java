@@ -277,7 +277,7 @@ public class Signup extends javax.swing.JFrame {
     user.setMobileNumber(txtMobileNumber.getText());
     user.setAddress(txtAddress.getText());
     user.setPassword(txtPassword.getText());
-    UserDao.save(user); // Make sure UserDao.save() inserts into the user_new table
+    UserDao.save(user); 
     clear();
     }//GEN-LAST:event_btnSaveSaveActionPerformed
 
