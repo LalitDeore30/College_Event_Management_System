@@ -73,8 +73,9 @@ public class UserDao {
     }
     
     }
-    public static void delete(String email) {
+    public static boolean delete(String email) {
          String query = "DELETE FROM register WHERE email = ?";
+        
 
         try (Connection con = ConnectionProvider.getCon();
              PreparedStatement ps = con.prepareStatement(query)) {
@@ -90,6 +91,33 @@ public class UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+         boolean deletionSuccessful = true;
+        
+   
+    return deletionSuccessful;
+        
+    }
+    public static boolean deleteAdmin(String email) {
+         String query = "DELETE FROM addEvent WHERE code = ?";
+        
+
+        try (Connection con = ConnectionProvider.getCon();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            // Set the email parameter for the query
+            ps.setString(1, email);
+            int rowsDeleted = ps.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("Event deleted successfully!");
+            } else {
+                System.out.println("No rows deleted! Event  not found.");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        boolean deletionSuccessful = true;
+   
+    return deletionSuccessful;
         
     }
 }
